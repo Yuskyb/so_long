@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "so_long",
+			"path": "."
+		},
+		{
+			"name": "libft",
+			"path": "../push_swap/libft"
+		}
+	],
+	"settings": {}
+}

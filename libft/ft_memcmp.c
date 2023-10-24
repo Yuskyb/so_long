@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yususato <yususato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 15:35:41 by yususato          #+#    #+#             */
-/*   Updated: 2023/10/24 16:20:26 by yususato         ###   ########.fr       */
+/*   Created: 2023/05/19 13:35:31 by yususato          #+#    #+#             */
+/*   Updated: 2023/06/01 17:43:41 by yususato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-#define	X_EVENT_KEY_PRESS 2
-#define	X_EVENT_KEY_RELEASE 3
-#define	KEY_SEC 53
-#define	KEY_W 13
-#define	KEY_A 0
-#define	KEY_S 1
-#define	KEY_D 
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
+{
+	size_t			i;
+	unsigned char	*p1;
+	unsigned char	*p2;
 
-typedef	struct s_param{
-	int	x;
-	int	y;
-} t_param;
-
-typedef	struct s_map{
-	int	height;
-	int	width;
-} t_map;
-
- #endif
+	i = 0;
+	p1 = (unsigned char *)s1;
+	p2 = (unsigned char *)s2;
+	if (!s1 && !s2)
+		return (0);
+	if (n == 0)
+		return (0);
+	while (*p1 == *p2 && i + 1 < n)
+	{
+		p1++;
+		p2++;
+		i++;
+	}
+	if (*p1 != *p2)
+		return (*p1 - *p2);
+	else
+		return (0);
+}

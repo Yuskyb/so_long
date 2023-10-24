@@ -1,48 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yususato <yususato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/23 17:07:53 by yususato          #+#    #+#             */
-/*   Updated: 2023/10/24 19:39:09 by yususato         ###   ########.fr       */
+/*   Created: 2023/10/24 19:15:58 by yususato          #+#    #+#             */
+/*   Updated: 2023/10/24 19:39:28 by yususato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"mlx.h"
 #include	"so_long"
 
-void	param_init(t_param *param)
+int	press_key(int key_code, t_game *game)
 {
-	param->x =3;
-	param-> = 4;
-}
-
-int	key_press(int keycode, t_param *param)
-{
-	static	int	a;
-	
-	a = 0;
-	if (keycode == KEY_W)
-		param->y++;
+	if (keycode == KEY_ESC)
+		exit_game(game);
+	else if (keycode == KEY_W)
+		move_w(game);
 	else if (keycode == KEY_A)
-		param->y--;
+		move_a(game);
 	else if (keycode == KEY_D)
-		param->x--;
-	else if (keycode == KEY_ESC)
-		param->x++;
-	ft_printf("x:%d, y:%d\n", param->x, param->y);
+		move_s(game);
+	else if (keycode == KEY_D)
+		move_d(game);
 	return (0);
 }
 
-
-int	main(void)
+void	move_w(t_game *g)
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 500, "mlx 42");
-	mlx_loop(mlx_ptr);
+	int	i;
+	
+	i = 0;
+	while (i++ < ft_strlen(g->str_line))
+	{
+		if (g->str_line[i] == 'P')
+			break;
+	}
 }

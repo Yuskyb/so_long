@@ -1,34 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yususato <yususato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 15:35:41 by yususato          #+#    #+#             */
-/*   Updated: 2023/10/24 16:20:26 by yususato         ###   ########.fr       */
+/*   Created: 2023/05/18 17:44:21 by yususato          #+#    #+#             */
+/*   Updated: 2023/05/22 13:05:06 by yususato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-#define	X_EVENT_KEY_PRESS 2
-#define	X_EVENT_KEY_RELEASE 3
-#define	KEY_SEC 53
-#define	KEY_W 13
-#define	KEY_A 0
-#define	KEY_S 1
-#define	KEY_D 
-
-typedef	struct s_param{
-	int	x;
-	int	y;
-} t_param;
-
-typedef	struct s_map{
-	int	height;
-	int	width;
-} t_map;
-
- #endif
+int	ft_isalnum(int c)
+{
+	return (ft_isalpha(c) || ft_isdigit(c));
+}

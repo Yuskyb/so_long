@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yususato <yususato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 15:35:41 by yususato          #+#    #+#             */
-/*   Updated: 2023/10/24 16:20:26 by yususato         ###   ########.fr       */
+/*   Created: 2023/05/24 20:38:48 by yususato          #+#    #+#             */
+/*   Updated: 2023/05/24 21:09:53 by yususato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+{
+	unsigned int	i;
 
-#define	X_EVENT_KEY_PRESS 2
-#define	X_EVENT_KEY_RELEASE 3
-#define	KEY_SEC 53
-#define	KEY_W 13
-#define	KEY_A 0
-#define	KEY_S 1
-#define	KEY_D 
-
-typedef	struct s_param{
-	int	x;
-	int	y;
-} t_param;
-
-typedef	struct s_map{
-	int	height;
-	int	width;
-} t_map;
-
- #endif
+	i = 0;
+	if (!s)
+		return ;
+	while (s[i])
+	{
+		f(i, &((char *)s)[i]);
+		i++;
+	}
+}

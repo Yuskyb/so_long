@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yususato <yususato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 15:35:41 by yususato          #+#    #+#             */
-/*   Updated: 2023/10/24 16:20:26 by yususato         ###   ########.fr       */
+/*   Created: 2023/05/18 21:00:33 by yususato          #+#    #+#             */
+/*   Updated: 2023/06/05 15:09:40 by yususato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-#define	X_EVENT_KEY_PRESS 2
-#define	X_EVENT_KEY_RELEASE 3
-#define	KEY_SEC 53
-#define	KEY_W 13
-#define	KEY_A 0
-#define	KEY_S 1
-#define	KEY_D 
+size_t	ft_strlcpy(char *dest, const char *src, size_t n)
+{
+	size_t	i;
 
-typedef	struct s_param{
-	int	x;
-	int	y;
-} t_param;
-
-typedef	struct s_map{
-	int	height;
-	int	width;
-} t_map;
-
- #endif
+	i = 0;
+	while (src[i] && i + 1 < n && n > 0)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	if (n > 0)
+		dest[i] = '\0';
+	while (src[i])
+		i++;
+	return (i);
+}
