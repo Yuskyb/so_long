@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strdup_new.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yususato <yususato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/20 17:28:19 by yususato          #+#    #+#             */
-/*   Updated: 2023/05/24 20:56:20 by yususato         ###   ########.fr       */
+/*   Created: 2023/05/20 17:50:58 by yususato          #+#    #+#             */
+/*   Updated: 2023/10/28 17:18:34 by yususato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include	"so_long.h"
 
-void	*ft_calloc(size_t count, size_t size)
+char	*ft_strdup(const char *src)
 {
-	void	*p;
+	int		i;
+	int		count;
+	char	*new;
 
-	if (count == 0 || size == 0)
+	i = 0;
+	count = 0;
+	while (src[i] != '\0')
 	{
-		count = 1;
-		size = 1;
+		count++;
+		i++;
 	}
-	if (count > SIZE_MAX / size)
+	new = (char *)malloc(sizeof(char) * (count + 1));
+	if (new == NULL)
 		return (NULL);
-	p = (void *)malloc(count * size);
-	if (!p)
-		return (NULL);
-	ft_bzero(p, count * size);
-	return (p);
+	i = 0;
+	while (src[i] != '\n')
+	{
+		new[i] = src[i];
+		i++;
+	}
+	new[i] = '\0';
+	return (new);
 }

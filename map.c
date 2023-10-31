@@ -6,18 +6,19 @@
 /*   By: yususato <yususato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 22:26:45 by yususato          #+#    #+#             */
-/*   Updated: 2023/10/24 19:39:23 by yususato         ###   ########.fr       */
+/*   Updated: 2023/10/31 15:59:43 by yususato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"so_long"
+#include	"so_long.h"
+#include	"mlx.h"
 
-void	map_read(char *filename, t_game *game)
+void	map_read(char *map, t_map *game)
 {
 	int		fd;
 	char	*line;
 
-	fd = open(filename, O_RDONLY);	
+	fd = open(map, O_RDONLY);
 	line = get_next_line(fd);
 	game->height = 0;
 	game->width = ft_strlen(line) - 1;
@@ -33,25 +34,29 @@ void	map_read(char *filename, t_game *game)
 	printf("%s\n", game->str_line);
 }
 
-void	setting_img(t_game game)
+void	setting_img(t_mlx *mlx, t_img *img, t_map *game)
 {
 	int	hei;
 	int	wid;
 
 	hei = 0;
-	while (hei < game->width)
+	while (hei < game->height)
 	{
-		if (game->str_line[hei * game->width + wid] == '1')
-			mlt_put_image_to_window(game->mlx, game->win, game->img->wall, wid * 64, hei * 64);
-		else if (game->str_line[hei * game->width + wid] == '1')
-			mlt_put_image_to_window(game->mlx, game->win, game->img->chest, wid * 64, hei * 64);
-		else if (game->str_line[hei * game->width + wid] == '1')
-			mlt_put_image_to_window(game->mlx, game->win, game->img->chara, wid * 64, hei * 64);
-		else if (game->str_line[hei * game->width + wid] == '1')
-			mlt_put_image_to_window(game->mlx, game->win, game->img->rune, wid * 64, hei * 64);
-		else
-			mlt_put_image_to_window(game->mlx, game->win,game->img->land,wid * 64, hei * 64);
-		wid++;
-	}
+		wid = 0;
+		while (hei < game->width)
+		{
+			if (game->str_line[hei * game->width + wid] == '1')
+				mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_ptr, img->wall, wid * 64, hei * 64);
+			else if (game->str_line[hei * game->width + wid] == 'C')
+				mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_ptr, img->chest, wid * 64, hei * 64);
+			else if (game->str_line[hei * game->width + wid] == 'P')
+				mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_ptr, img->chara, wid * 64, hei * 64);
+			else if (game->str_line[hei * game->width + wid] == 'E')
+				mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_ptr, img->rune, wid * 64, hei * 64);
+			else
+				mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_ptr, img->land, wid * 64, hei * 64);
+			wid++;
+		}
 	hei++;
+	}
 }

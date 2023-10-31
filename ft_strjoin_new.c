@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin_new.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yususato <yususato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/01 20:49:10 by yususato          #+#    #+#             */
-/*   Updated: 2023/06/02 17:18:59 by yususato         ###   ########.fr       */
+/*   Created: 2023/05/22 13:51:41 by yususato          #+#    #+#             */
+/*   Updated: 2023/10/28 17:18:29 by yususato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"libft.h"
+#include	"so_long.h"
 
-t_list	*ft_lstnew(void *content)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	t_list	*new;
+	char	*new;
+	size_t	len1;
+	size_t	len2;
 
-	new = (t_list *)malloc(sizeof(t_list));
-	if (new == NULL)
+	if (!s1 && !s2)
 		return (NULL);
-	new->content = content;
-	new->next = NULL;
+	if (!s1)
+		return (NULL);
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	new = (char *) malloc(sizeof(char) * (len1 + len2));
+	new[len1 + len2 + 1] = '\0';
+	if (!new)
+		return (NULL);
+	ft_strlcpy(new, s1, len1 + 1);
+	ft_strlcpy(new + len1, s2, len2 + 1);
 	return (new);
 }
