@@ -6,12 +6,29 @@
 /*   By: yususato <yususato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 22:26:45 by yususato          #+#    #+#             */
-/*   Updated: 2023/10/31 15:59:43 by yususato         ###   ########.fr       */
+/*   Updated: 2023/12/14 14:40:32 by yususato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"so_long.h"
 #include	"mlx.h"
+
+char    *ft_temp_sj(t_map *game, char *line)
+{
+    char    *tmp;
+
+
+    tmp = ft_strjoin_new(game->str_line, line, game);
+    if (game->str_line)
+        free (game->str_line);
+    if (!tmp)
+    {
+        if (line)
+            free(line);
+        return (NULL);
+    }
+    return (tmp);
+}
 
 void	map_read(char *map, t_map *game)
 {
@@ -20,41 +37,51 @@ void	map_read(char *map, t_map *game)
 
 	fd = open(map, O_RDONLY);
 	line = get_next_line(fd);
-	game->height = 0;
+	if (line == NULL || ft_strchr(line, '1') == NULL)
+		ft_exit_close(fd);
 	game->width = ft_strlen(line) - 1;
 	game->str_line = ft_strdup_new(line);
-	while (line)
-	{
+	free(line);
+	char *nl = game->str_line;
+;	while (nl)
+	{	
 		game->height++;
-		line = get_next_line(fd);
-		if (line)
-			game->str_line = ft_strjoin_new(game->str_line, line);
+		nl = get_next_line(fd);
+		if (nl)
+			game->str_line = ft_temp_sj(game,nl);
+		else if (nl != NULL && game->width != ft_strlen(nl) - 1)
+			ft_exit_close(fd);
+		free(nl);
 	}
 	close(fd);
-	printf("%s\n", game->str_line);
+	free(game->str_line);
+	if (game->width > 50 || game->height > 28)
+		ft_exit();
+	if (game->flag == 0)
+		ft_exit();
 }
 
 void	setting_img(t_mlx *mlx, t_img *img, t_map *game)
 {
-	int	hei;
-	int	wid;
+	size_t	hei;
+	size_t	wid;
 
 	hei = 0;
 	while (hei < game->height)
 	{
 		wid = 0;
-		while (hei < game->width)
+		while (wid < game->width)
 		{
 			if (game->str_line[hei * game->width + wid] == '1')
-				mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_ptr, img->wall, wid * 64, hei * 64);
+				draw_wall(mlx, img, wid, hei);
 			else if (game->str_line[hei * game->width + wid] == 'C')
-				mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_ptr, img->chest, wid * 64, hei * 64);
+				draw_chest(mlx, img, wid, hei);
 			else if (game->str_line[hei * game->width + wid] == 'P')
-				mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_ptr, img->chara, wid * 64, hei * 64);
+				draw_chara(mlx, img, wid, hei);
 			else if (game->str_line[hei * game->width + wid] == 'E')
-				mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_ptr, img->rune, wid * 64, hei * 64);
+				draw_rune(mlx, img, wid, hei);
 			else
-				mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_ptr, img->land, wid * 64, hei * 64);
+				draw_land(mlx, img, wid, hei);
 			wid++;
 		}
 	hei++;

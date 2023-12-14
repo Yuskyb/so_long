@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yususato <yususato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/20 17:50:58 by yususato          #+#    #+#             */
-/*   Updated: 2023/10/28 17:18:34 by yususato         ###   ########.fr       */
+/*   Created: 2023/12/10 13:02:33 by yususato          #+#    #+#             */
+/*   Updated: 2023/12/13 17:36:58 by yususato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"so_long.h"
 
-char	*ft_strdup(const char *src)
+char	*ft_strdup_new(char *src)
 {
 	int		i;
 	int		count;
@@ -35,5 +35,6 @@ char	*ft_strdup(const char *src)
 		i++;
 	}
 	new[i] = '\0';
+	free(src);
 	return (new);
 }

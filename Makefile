@@ -6,47 +6,49 @@
 #    By: yususato <yususato@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/02 20:28:35 by yususato          #+#    #+#              #
-#    Updated: 2023/10/31 15:11:34 by yususato         ###   ########.fr        #
+#    Updated: 2023/12/13 16:47:50 by yususato         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 CC = cc
 INCLUDES_DIR = ./Includes
-CFLAGS = -Wall -Wextra -Werror -I$(INCLUDES_DIR) -g 
-# -fsanitize=address
+CFLAGS = -I$(INCLUDES_DIR)
 
 SRCS = so_long.c \
 		map.c	\
-		move.c \
 		get_next_line.c \
-		get_next_line_utils.c \
-		get_next_line_utils_bonus.c \
-		get_next_line_bonus.c \
-		error.c
+		error.c \
+		ft_strjoin_new.c \
+		ft_strdup_new.c \
+		move.c \
+		check_map.c \
+		check_move.c \
+		check_col.c \
+		draw.c \
+		explore.c \
+		col_explore.c \
+		map_utils.c
 
 OBJS = $(SRCS:%.c=%.o)
 
+LIBDIR = ./libft
+LIBFT = $(LIBDIR)/libft.a
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
-	
-# $(NAME): $(OBJ)
-# 	$(CC) $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+$(NAME): $(OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
-# %.o: %.c
-# 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
-
-# %.o: %.c
-# 	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@
+$(LIBFT):
+	$(MAKE) -C $(LIBDIR)
 
 clean:
+	$(MAKE) fclean -C $(LIBDIR)
 	$(RM) $(OBJS)
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(LIBFT)
 
 re: fclean all
 
