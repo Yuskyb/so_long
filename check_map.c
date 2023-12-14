@@ -6,7 +6,7 @@
 /*   By: yususato <yususato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 20:11:46 by yususato          #+#    #+#             */
-/*   Updated: 2023/12/11 16:12:29 by yususato         ###   ########.fr       */
+/*   Updated: 2023/12/14 18:07:38 by yususato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,19 @@ void	str_change(t_map *game)
 	return ;
 }
 
+void	ft_free(t_map *game)
+{
+	int	i;
+
+	i = 0;
+	while (game->str[i])
+	{
+		free(game->str[i]);
+		i++;
+	}
+	free(game->str);
+}
+
 void	col_check(t_map *game, t_move *move, int hei, int wid)
 {
 	int		i;
@@ -64,7 +77,6 @@ void	col_check(t_map *game, t_move *move, int hei, int wid)
 			game->str[hei][wid] = 'X';
 			col_init(move, hei, wid);
 			col_depth(game, move);
-			str_change(game);
 			if (move->col_move_flag == 0)
 				ft_exit();
 			move->col_move_flag = 0;
@@ -72,6 +84,7 @@ void	col_check(t_map *game, t_move *move, int hei, int wid)
 		}
 		i++;
 	}
+	ft_free(game);
 }
 
 void	search(t_map *game, int col)
@@ -93,6 +106,7 @@ void	search(t_map *game, int col)
 	col_check(game, &move, hei, wid);
 	str_change(game);
 	depth(game, &move);
+	ft_free(game);
 	if (move.flag == 0)
 		ft_exit();
 }

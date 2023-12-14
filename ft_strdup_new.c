@@ -6,7 +6,7 @@
 /*   By: yususato <yususato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 13:02:33 by yususato          #+#    #+#             */
-/*   Updated: 2023/12/13 17:36:58 by yususato         ###   ########.fr       */
+/*   Updated: 2023/12/14 20:06:36 by yususato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,22 @@
 char	*ft_strdup_new(char *src)
 {
 	int		i;
-	int		count;
 	char	*new;
 
 	i = 0;
-	count = 0;
-	while (src[i] != '\0')
-	{
-		count++;
-		i++;
-	}
-	new = (char *)malloc(sizeof(char) * (count + 1));
+	if (src == NULL)
+		return (NULL);
+	new = (char *)malloc(sizeof(char) * ft_strlen(src));
 	if (new == NULL)
 		return (NULL);
-	i = 0;
-	while (src[i] != '\n')
+	while (src[i] != '\0')
 	{
 		new[i] = src[i];
 		i++;
 	}
-	new[i] = '\0';
-	free(src);
+	if (ft_strchr(new, '\n') && i != 0)
+		new[i - 1] = '\0';
+	else
+		new[i] = '\0';
 	return (new);
 }
