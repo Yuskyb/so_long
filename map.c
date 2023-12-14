@@ -6,7 +6,7 @@
 /*   By: yususato <yususato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 22:26:45 by yususato          #+#    #+#             */
-/*   Updated: 2023/12/14 14:40:32 by yususato         ###   ########.fr       */
+/*   Updated: 2023/12/14 16:19:39 by yususato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	map_read(char *map, t_map *game)
 		ft_exit_close(fd);
 	game->width = ft_strlen(line) - 1;
 	game->str_line = ft_strdup_new(line);
-	free(line);
 	char *nl = game->str_line;
 ;	while (nl)
 	{	

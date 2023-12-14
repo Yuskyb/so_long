@@ -6,7 +6,7 @@
 /*   By: yususato <yususato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 18:42:32 by yususato          #+#    #+#             */
-/*   Updated: 2023/12/13 17:30:38 by yususato         ###   ########.fr       */
+/*   Updated: 2023/12/14 16:23:47 by yususato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	main(int ac, char **av)
 	// setting_img(&mlx, &img, &game);
 	// mlx_hook(mlx.w_ptr, X_EVENT_KEY_RELEASE, 0, &press_key, &game);
 	// mlx_loop(mlx.m_ptr);
-	// exit(0);
+	exit(0);
 }
 
 __attribute__((destructor)) static void destructor()

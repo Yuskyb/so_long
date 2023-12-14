@@ -6,7 +6,7 @@
 /*   By: yususato <yususato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 13:02:22 by yususato          #+#    #+#             */
-/*   Updated: 2023/12/13 17:56:58 by yususato         ###   ########.fr       */
+/*   Updated: 2023/12/14 16:19:31 by yususato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ char	*ft_strjoin_new(char *s1, char *s2, t_map *game)
 		return (NULL);
 	ft_strlcpy(new, s1, len1 + 1);
 	ft_strlcpy(new + len1, s2, len2 + 1);
-	free(s1);
 	if (ft_strchr(new, '\n'))
 		new[len1 + len2 - 1] = '\0';
 	else

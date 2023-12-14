@@ -6,7 +6,7 @@
 /*   By: yususato <yususato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:35:41 by yususato          #+#    #+#             */
-/*   Updated: 2023/12/13 17:34:06 by yususato         ###   ########.fr       */
+/*   Updated: 2023/12/14 16:22:21 by yususato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ void	setting_img(t_mlx *mlx, t_img *img, t_map *game);
 char	*line_next(char *buffer, char *line);
 char	*output(char *buffer);
 char	*unit(char *buffer, char *buf);
-char	*read_file(int fd, char *buffer, int *flag);
 char	*get_next_line(int fd);
 char	*ft_strdup_new(char *src);
 char	*ft_strjoin_new(char *s1, char *s2, t_map *game);
