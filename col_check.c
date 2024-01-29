@@ -6,7 +6,7 @@
 /*   By: yususato <yususato@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 19:57:18 by yususato          #+#    #+#             */
-/*   Updated: 2023/12/21 11:03:01 by yususato         ###   ########.fr       */
+/*   Updated: 2023/12/21 12:21:06 by yususato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	can_pass_c(t_map *game, t_stack *stack, bool *visited)
 
 	next.x = game->xi;
 	if (visited[game->xi + (game->yi * game->width)] == false
-		&& check_c(game, stack))
+		&& check_c(game))
 	{
 	next.y = game->yi;
 		game->top++;
