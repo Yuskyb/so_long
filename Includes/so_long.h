@@ -20,7 +20,7 @@
 # include <string.h>
 # include <limits.h>
 # include <fcntl.h>
-# include	"mlx.h"
+# include	"../mlx/mlx.h"
 # include "../libft/libft.h"
 # include "../libft/ft_printf.h"
 # include <stdbool.h>

@@ -27,9 +27,6 @@ void	ft_exit_close(int fd)
 
 void	exit_game(t_map *game)
 {
-	int	i;
-
-	i = 0;
 	mlx_destroy_window(game->mlx.m_ptr, game->mlx.w_ptr);
 	free(game->str_line);
 	exit(0);
@@ -37,9 +34,6 @@ void	exit_game(t_map *game)
 
 void	clear_game(t_map *game)
 {
-	int	i;
-
-	i = 0;
 	game->walk_cnt++;
 	setting_img(&game->mlx, &game->img, game);
 	ft_printf("Clear!!");

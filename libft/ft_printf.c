@@ -70,9 +70,7 @@ int	ft_range(int c, va_list ap)
 int	ft_process_u(unsigned int u)
 {
 	int		i;
-	int		j;
 
-	j = 0;
 	i = 0;
 	i = ft_putnbr_u(u);
 	return (i);
@@ -86,9 +84,7 @@ int	ft_process_c(char c)
 int	ft_process_i(int c)
 {
 	int	i;
-	int	j;
 
-	j = 0;
 	i = ft_putnbr_i(c);
 	return (i);
 }

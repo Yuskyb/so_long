@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include	"so_long.h"
-#include	"mlx.h"
 
 char	*ft_temp_sj(t_map *game, char *line)
 {
